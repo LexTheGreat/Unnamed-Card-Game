@@ -24,7 +24,7 @@ _How do I, as a developer, start working on the project?_
     "Photo": "Monster.png" // IMPORTANT, card photo name on client!
  }
 ```
-3. _"Photo": "Monster.png" reflects to `public/img/card/Monster.png`
+3. _"Photo": "Monster.png" reflects to `public/img/card/Monster.png`_
 
 ## Testing
 

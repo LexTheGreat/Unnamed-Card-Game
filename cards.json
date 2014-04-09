@@ -1,0 +1,10 @@
+[
+ {
+    "Level": 1,
+    "Name": "CardName",
+    "Desc": "Basic Desc.",
+    "Power": 1,
+    "Defence": 1,
+    "Photo": "Monster.png"
+ }
+]

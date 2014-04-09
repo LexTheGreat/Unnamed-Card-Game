@@ -1,0 +1,8 @@
+{
+  "name": "Unnamed-Card-Game",
+  "description": "Unnamed-Card-Game TCG Engine",
+  "dependencies": {
+    "express": "*",
+    "socket.io": "*"
+  }
+}

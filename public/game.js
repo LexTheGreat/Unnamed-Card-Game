@@ -2,17 +2,15 @@ window.Game = function() {
 	this.canvas = document.getElementById('canvas');
 	this.canvas.width = window.innerWidth;
 	this.canvas.height = window.innerHeight;
-	this.id = 0
+	this.id = 0;
+	this.rule = '';
 	this.ctx = canvas.getContext('2d');
 	this.ctx.fillRect(0, 0, canvas.width, canvas.height);
 	this.ctx.fillStyle = 'rgb(150,150,150)'; // 25x25 & canvas.width-100xcanvas.height-25
 	this.preloadImages.list = [];
 	var imageURLs = [
-	    "img/card/Slime.png",
-		"img/card/RSlime.png",
-		"img/card/BSlime.png",
-		"img/card/WSlime.png",
-		"img/card/KSlime.png"
+		"img/card/404.png",
+	    "img/card/Monster.png"
 	];
 	
 	this.preloadImages(imageURLs);
@@ -38,6 +36,7 @@ Game.prototype = {
 				return this.preloadImages.list[i];
 			}
 		}
+		return this.preloadImages.list[0];
 	},
 	_drawMyField: function(cards) {
 		this.mField = cards

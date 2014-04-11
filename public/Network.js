@@ -4,6 +4,7 @@ $(function() {
 	
 	socket.on('connected', function(data) {
 		game.id = data
+		socket.emit('requestRule');
 	});
 	
 	socket.on('notify', function(data) {
@@ -11,9 +12,10 @@ $(function() {
 		$.notify(data.message, data.type);
 	});
 	
-	socket.on('message', function(data) {
-		// data.user, data.message
-		
+	socket.on('rule', function(data) {
+		// data as string
+		game.rule = data
+		console.log(data)
 	});
 	
 	socket.on('update', function(worldState) {

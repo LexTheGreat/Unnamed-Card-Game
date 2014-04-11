@@ -5,6 +5,7 @@ var CardManager = function() {
 	this.jsonLoad = function() {
     	var file = fs.readFileSync("./cards.json", "utf8");
 		var obj = JSON.parse(file);
+		this.cards = [];
 		for(var i = 0; i < obj.length; i++){
 			this.cards.push(obj[i]);
 		}

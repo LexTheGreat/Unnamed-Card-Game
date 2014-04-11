@@ -5,14 +5,15 @@ var CardManager = new cardmanager()
 
 var World = function() {
 	CardManager.jsonLoad()
+	this.Turn // id
   	this.Players = {};
   	this.FPS = 30;
-	this.Turn = true
 };
 
 World.prototype = {
 	login: function(id) {
 		var player = new Player(id);
+		this.Turn = id
 		player.getDeck(CardManager.cards)
    		this.Players[id] = player;
 		console.log(this.Players[id].Name, "Has joined the server.");
@@ -22,6 +23,17 @@ World.prototype = {
 		console.log(this.Players[id].Name, "Has left the server.");
     	delete this.Players[id];
   	},
+	isTurn: function(id) {
+		if(id == this.Turn) { return true; } else { return false; }
+	},
+	changeTurn: function() {
+		for(var player in this.Players) {
+			if(this.Turn != player) { // todo fix turn, always returns false
+				this.Turn = player;
+				return
+			}
+		}
+	},
   	start: function(callback) {
     	var self = this;
     	setInterval(function() {
@@ -36,3 +48,18 @@ World.prototype = {
 };
 
 module.exports = World;
+
+fs.watchFile('./cards.json', function (curr, prev) {
+	if(curr.mtime != prev.mtime) {
+  		console.log('File change in cards.json, ' + curr.mtime);
+		console.log('Reloading card database.');
+		CardManager.jsonLoad()
+  		//console.log('the previous mtime was: ' + prev.mtime);
+	}
+});
+fs.watchFile('./GameRule.txt', function (curr, prev) {
+	if(curr.mtime != prev.mtime) {
+  		console.log('File change in GameRule.txt, ' + curr.mtime);
+  		//console.log('the previous mtime was: ' + prev.mtime);
+	}
+});

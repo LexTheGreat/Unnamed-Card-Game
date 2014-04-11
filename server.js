@@ -2,6 +2,7 @@ var express = require('express'),
 	http = require('http'),
 	cardmanager = require('./cardmanager'),
 	app = express();
+	fs = require('fs')
 var webenable = true
 
 if (!webenable) {
@@ -18,7 +19,6 @@ var World = require('./world'),
 var io = require('socket.io'),
 	io = io.listen(server);
 
-
 io.sockets.on('connection', function(socket) {
 	var player = world.login(socket.id);
 		// success info warn error
@@ -30,35 +30,49 @@ io.sockets.on('connection', function(socket) {
 	player.drawCard();
 	player.drawCard();
 	player.drawCard();
+	socket.on('requestRule', function(data) {
+		var tempRules = fs.readFileSync('GameRule.txt','utf8')
+		socket.emit('rule', tempRules);
+	});
 	
 	socket.on('drawCard', function(data) {
-		if(player.Hand.length < 5 && player.Deck.length > 0 && world.Turn == player.Turn) {
+		if(player.Hand.length < 5 && player.Deck.length > 0 && world.isTurn(player.id)) { //&& world.Turn == player.Turn) {
 			player.drawCard();
 		} else {
-			socket.emit('notify', { message:'Full hand', type:'warn' });
+			socket.emit('notify', { message:'Can\'t draw', type:'warn' });
 		}
 	});
 	
 	socket.on('placeCard', function(data) {
-		if(world.Turn == player.Turn) {
+		if(world.isTurn(player.id)) {
 			if(player.Hand[data]){
 				player.placeCard(data);
+			} else {
+				socket.emit('notify', { message:'Invaild Card', type:'error' });
 			}
+		} else {
+			socket.emit('notify', { message:'Other Players turn!', type:'warn' });
 		}
 	});
 	
 	socket.on('useCard', function(data) {
-		if(world.Turn == player.Turn) {
+		if(world.isTurn(player.id)) {
 			if(player.Field[data]){
-				// Replace with something else just remove card for now ------------------- Todo
 				player.removeCard(data);//, field, hand)
+			} else {
+				socket.emit('notify', { message:'Invaild Card', type:'error' });
 			}
+		} else {
+			socket.emit('notify', { message:'Not your turn', type:'warn' });
 		}
 	});
 	
 	socket.on('endTurn', function(data) {
-		if(world.Turn == player.Turn) {
-			world.Turn = !world.Turn
+		if(world.isTurn(player.id)) {
+			world.changeTurn();
+			io.sockets.emit('notify', { message:'Ended Turn', type:'success' });
+		} else {
+			socket.emit('notify', { message:'Other Players turn!', type:'warn' });
 		}
 	});
 	
@@ -80,4 +94,5 @@ world.start(function(worldState) {
 		socket.emit('update', worldState);
 	});
 });
+
 io.set("log level", 1);

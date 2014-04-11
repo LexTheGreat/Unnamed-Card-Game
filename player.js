@@ -38,9 +38,6 @@ Player.prototype = {
 			this.Deck.push(object)
 	  	}
 	},
-	Turn: function() {
-		if(this.id==0) { return true; } else { return false };
-	}
 }
 module.exports = Player;
 

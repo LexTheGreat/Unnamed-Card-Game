@@ -112,6 +112,15 @@ Game.prototype = {
       	this.ctx.strokeStyle = 'black';
       	this.ctx.stroke();
 		this._drawText("End", this.canvas.width-370, this.canvas.height/2.5+125)
+		
+		this.ctx.beginPath();
+      	this.ctx.rect(this.canvas.width-400, this.canvas.height/2.5+150, 100, 35);
+      	this.ctx.fillStyle = 'white';
+      	this.ctx.fill();
+      	this.ctx.lineWidth = 1;
+      	this.ctx.strokeStyle = 'black';
+      	this.ctx.stroke();
+		this._drawText("Rules", this.canvas.width-380, this.canvas.height/2.5+175)
 	},
 	render: function(data) {
 		// Todo ~ Autoresize
@@ -196,6 +205,10 @@ function checkClick(pos){
 	if(this.canvas.width-400 <= pos.x && this.canvas.width-300 >= pos.x && this.canvas.height/2.5+120 >= pos.y && this.canvas.height/2.5+100 <= pos.y){
 		console.log('Clicked GUI [End]');
 		socket.emit('endTurn')
+	}
+	if(this.canvas.width-400 <= pos.x && this.canvas.width-300 >= pos.x && this.canvas.height/2.5+170 >= pos.y && this.canvas.height/2.5+150 <= pos.y){
+		console.log('Clicked GUI [Rule]');
+		socket.emit('requestRule');
 	}
 }
 

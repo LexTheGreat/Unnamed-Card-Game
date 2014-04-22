@@ -1,6 +1,7 @@
 # _Unnamed Card Game_
 
 _Open source TCG engine made with node/canvas_
+_You need node.js! http://nodejs.org/_
 
 ## Project Setup
 

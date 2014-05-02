@@ -28,7 +28,7 @@ World.prototype = {
 	},
 	changeTurn: function() {
 		for(var player in this.Players) {
-			if(this.Turn != player) { // todo fix turn, always returns false
+			if(this.Turn != player) {
 				this.Turn = player;
 				return
 			}

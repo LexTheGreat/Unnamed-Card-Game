@@ -30,8 +30,14 @@ io.sockets.on('connection', function(socket) {
 	player.drawCard();
 	player.drawCard();
 	player.drawCard();
+	
+	socket.on('message', function(data) {
+		var tempName = player.Name + ': ' + data
+		socket.broadcast.emit('message', tempName)
+	});
+	
 	socket.on('requestRule', function(data) {
-		var tempRules = fs.readFileSync('GameRule.txt','utf8')
+		var tempRules = fs.readFileSync('Gamerule.html','utf8')
 		socket.emit('rule', tempRules);
 	});
 	
@@ -56,14 +62,10 @@ io.sockets.on('connection', function(socket) {
 	});
 	
 	socket.on('useCard', function(data) {
-		if(world.isTurn(player.id)) {
-			if(player.Field[data]){
-				player.removeCard(data);//, field, hand)
-			} else {
-				socket.emit('notify', { message:'Invaild Card', type:'error' });
-			}
+		if(player.Field[data]){
+			player.removeCard(data);//, field, hand)
 		} else {
-			socket.emit('notify', { message:'Not your turn', type:'warn' });
+			socket.emit('notify', { message:'Invaild Card', type:'error' });
 		}
 	});
 	
@@ -76,8 +78,8 @@ io.sockets.on('connection', function(socket) {
 		}
 	});
 	
-	socket.on('name', function(data) {
-		player.updateName(data);
+	socket.on('updateName', function(data) {
+		player.Name = data
 	});
 	
 	socket.on('disconnect', function() {

@@ -1,10 +1,50 @@
 [
  {
     "Level": 1,
-    "Name": "CardName",
-    "Desc": "Basic Desc.",
+    "Name": "Slime",
+    "Desc": "Basic Slime.",
     "Power": 1,
     "Defence": 1,
-    "Photo": "Monster.png"
+    "Photo": "Slime.png"
+ },
+ {
+    "Level": 3,
+    "Name": "Blue Slime",
+    "Desc": "Water-Blue Slime.",
+    "Power": 1,
+    "Defence": 2,
+    "Photo": "BSlime.png"
+ },
+ {
+    "Level": 3,
+    "Name": "Red Slime",
+    "Desc": "Fire-Red Slime.\n(Use) Burn target, -1 Defense on target",
+    "Power": 2,
+    "Defence": 1,
+    "Photo": "RSlime.png"
+ },
+ {
+    "Level": 4,
+    "Name": "White Slime",
+    "Desc": "Holly-White Slime.\n(Use) +1 Defense on any other slime.",
+    "Power": 2,
+    "Defence": 2,
+    "Photo": "WSlime.png"
+ },
+ {
+    "Level": 6,
+    "Name": "King Slime",
+    "Desc": "King Slime.\n(Use) Add one normal Slime from your hand to the field.",
+    "Power": 3,
+    "Defence": 3,
+    "Photo": "KSlime.png"
+ },
+ {
+    "Level": 6,
+    "Name": "Rock Spider",
+    "Desc": "Rock Spider.\n(Use) -3 Power, +3 Defence untill your next turn.",
+    "Power": 3,
+    "Defence": 3,
+    "Photo": "RockSpider.png"
  }
 ]

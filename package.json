@@ -1,6 +1,6 @@
 {
-  "name": "Unnamed-Card-Game",
-  "description": "Unnamed-Card-Game TCG Engine",
+  "name": "SlimeKingdom",
+  "description": "SlimeKingdom TCG",
   "dependencies": {
     "express": "*",
     "socket.io": "*"

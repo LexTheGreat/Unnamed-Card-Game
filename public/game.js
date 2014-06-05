@@ -10,7 +10,12 @@ window.Game = function() {
 	this.preloadImages.list = [];
 	var imageURLs = [
 		"img/card/404.png",
-	    "img/card/Monster.png"
+	    "img/card/Slime.png",
+		"img/card/RSlime.png",
+		"img/card/BSlime.png",
+		"img/card/WSlime.png",
+		"img/card/KSlime.png",
+		"img/card/RockSpider.png"
 	];
 	
 	this.preloadImages(imageURLs);
@@ -121,6 +126,7 @@ Game.prototype = {
       	this.ctx.strokeStyle = 'black';
       	this.ctx.stroke();
 		this._drawText("Rules", this.canvas.width-380, this.canvas.height/2.5+175)
+
 	},
 	render: function(data) {
 		// Todo ~ Autoresize

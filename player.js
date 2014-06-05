@@ -8,9 +8,6 @@ var Player = function(id) {
 };
 
 Player.prototype = {
-	updateName: function(name) {
-		this.name = name;
-	},
 	addCard: function() {
 		for(var i = 0; i < arguments.length; i++) {
 			this.Deck[arguments[i]] = arguments[i];

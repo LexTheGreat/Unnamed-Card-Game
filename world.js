@@ -28,7 +28,7 @@ World.prototype = {
 	},
 	changeTurn: function() {
 		for(var player in this.Players) {
-			if(this.Turn != player) { // todo fix turn, always returns false
+			if(this.Turn != player) {
 				this.Turn = player;
 				return
 			}
@@ -57,9 +57,9 @@ fs.watchFile('./cards.json', function (curr, prev) {
   		//console.log('the previous mtime was: ' + prev.mtime);
 	}
 });
-fs.watchFile('./GameRule.txt', function (curr, prev) {
+fs.watchFile('./Gamerule.html', function (curr, prev) {
 	if(curr.mtime != prev.mtime) {
-  		console.log('File change in GameRule.txt, ' + curr.mtime);
+  		console.log('File change in Gamerule.html, ' + curr.mtime);
   		//console.log('the previous mtime was: ' + prev.mtime);
 	}
 });

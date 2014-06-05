@@ -4,6 +4,7 @@ $(function() {
 	
 	socket.on('connected', function(data) {
 		game.id = data
+		console.log("[Socket:Connected] ID:", data);
 		socket.emit('requestRule');
 		$.notify("Make sure all notifications are gone before playing", "warn");
 	});
@@ -11,11 +12,10 @@ $(function() {
 	socket.on('notify', function(data) {
 		// data.message, data.type
 		$.notify(data.message, data.type);
+		console.log("[Socket:Notify] Message: " + data.message, "| Type: " + data.type);
 	});
 	
 	socket.on('rule', function(data) {
-		// data as string
-		//game.rule = data
 		$.notify("Please allow Popup for rules", "warn");
 		var popup = open("", "Popup", "width=400,height=300");
 		popup.document.title = "Rules"
@@ -26,5 +26,9 @@ $(function() {
 	
 	socket.on('update', function(worldState) {
 		game.render(worldState);
+	});
+	
+	socket.on('message', function(data) {
+		console.log(data)
 	});
 });
